@@ -14,6 +14,7 @@ exports.BasicCalculatorPage = class BasicCalculatorPage {
     this.secondNumber = page.locator('input[name="number2"]');
     this.operationSelect = page.locator('select[name="selectOperation"]');
     this.calculateButton = page.locator('input:has-text("Calculate")');
+    this.header = page.locator('div .intro-heading', { hasText: 'Basic Calculator' });
   }
 
   // Values for the operation select list
@@ -26,14 +27,14 @@ exports.BasicCalculatorPage = class BasicCalculatorPage {
     await this.page.goto('https://testsheepnz.github.io/BasicCalculator.html');
   }
 
-  async inputNumbers(a,b) {
+  async inputNumbers(a, b) {
     await this.firstNumber.click();
     await this.firstNumber.fill(a);
 
     await this.secondNumber.click();
     await this.secondNumber.fill(b);
   }
-    
+
   async selectAddition() {
     await this.operationSelect.selectOption(this.addition);
   }
@@ -57,6 +58,10 @@ exports.BasicCalculatorPage = class BasicCalculatorPage {
   async getAnswerValue() {
     const answerField = await this.page.inputValue('#numberAnswerField');
     return answerField;
+  }
+
+  async getPageHeader() {
+    return await this.header.innerText();
   }
 
 }
