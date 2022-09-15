@@ -7,8 +7,8 @@ const { BasicCalculatorPage } = require('../pages/BasicCalculatorPage');
 
 test('Can access the calculator from the index page', async ({ page }) => {
   const indexPage = new IndexPage(page);
-  indexPage.goto();
-  indexPage.clickCalculatorLink();
+  await indexPage.goto();
+  await indexPage.clickCalculatorLink();
 
   const calculatorPage = new BasicCalculatorPage(page);
   expect(await calculatorPage.getPageHeader()).toBe('BASIC CALCULATOR');
@@ -18,6 +18,6 @@ test('Can access the calculator from the index page', async ({ page }) => {
 
 test('Can view the calculator details on the index page', async ({ page }) => {
   const indexPage = new IndexPage(page);
-  indexPage.goto();
-  expect(indexPage.expectCalculatorAvailable());
+  await indexPage.goto();
+  expect(await indexPage.expectCalculatorAvailable());
 });

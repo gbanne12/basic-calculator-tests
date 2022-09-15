@@ -17,7 +17,7 @@ test('Can use calculator to perform a whole number addition', async ({ page }) =
   await calculatorPage.selectAddition();
   await calculatorPage.calculate();
 
-  expectValueToBe(expectedAnswer, page);
+  expect(await calculatorPage.getAnswerValue()).toBe(expectedAnswer);
 })
 
 test('Can use calculator to perform a whole number subtraction', async ({ page }) => {
@@ -30,7 +30,7 @@ test('Can use calculator to perform a whole number subtraction', async ({ page }
   await calculatorPage.selectSubtraction();
   await calculatorPage.calculate();
 
-  expectValueToBe(expectedAnswer, page);
+  expect(await calculatorPage.getAnswerValue()).toBe(expectedAnswer);
 })
 
 test('Can use calculator to performs a whole number multiplication', async ({ page }) => {
@@ -43,7 +43,7 @@ test('Can use calculator to performs a whole number multiplication', async ({ pa
   await calculatorPage.selectMultiplication();
   await calculatorPage.calculate();
 
-  expectValueToBe(expectedAnswer, page);
+  expect(await calculatorPage.getAnswerValue()).toBe(expectedAnswer);
 })
 
 test('Can use calculator to perform a whole number division', async ({ page }) => {
@@ -56,12 +56,6 @@ test('Can use calculator to perform a whole number division', async ({ page }) =
   await calculatorPage.selectDivision();
   await calculatorPage.calculate();
 
-  expectValueToBe(expectedAnswer, page);
+  expect(await calculatorPage.getAnswerValue()).toBe(expectedAnswer);
 })
 
-
-async function expectValueToBe(expectedValue, page) {
-  const calculatorPage = new BasicCalculatorPage(page);
-  const answerFieldValue = await calculatorPage.getAnswerValue();
-  expect(answerFieldValue).toBe(expectedValue);
-}

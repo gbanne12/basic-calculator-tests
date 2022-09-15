@@ -10,7 +10,7 @@ exports.IndexPage = class IndexPage {
     this.page = page;
     this.basicCalculatorLink = page.locator('#gotoBasicCalc');
     this.basicCalcultorCaption = page.locator('div h4', { hasText: 'Basic Calculator' });
-    this.basciCalculatorHeader = page.locator('div p', { hasText: 'A basic page to practice your test automation'});
+    this.basicCalculatorHeader = page.locator('div p', { hasText: 'A basic page to practice your test automation' });
   }
 
   async goto() {
@@ -22,7 +22,7 @@ exports.IndexPage = class IndexPage {
   }
 
   async expectCalculatorAvailable() {
-    await expect(this.basciCalculatorHeader.isVisible());
-    await expect(this.basicCalcultorCaption.isVisible());
+    expect(await this.basicCalculatorHeader.isVisible());
+    expect(await this.basicCalcultorCaption.isVisible());
   }
 }
